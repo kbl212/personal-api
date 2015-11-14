@@ -9,6 +9,8 @@ var app = express();
 
 app.use(middleware.addHeaders);
 
+app.use(middleware.verifyUser);
+
 app.use(bodyParser.json());
 
 
@@ -25,6 +27,8 @@ app.get('/occupations/latest', mainCtrl.getLatestOccupation);
 app.get('/hobbies', mainCtrl.getHobbies);
 
 app.get('/hobbies/:type', mainCtrl.getHobbiesByType);
+
+app.get('/secrets/:username/:pin', mainCtrl.getSecrets);
 
 app.put('/name', mainCtrl.changeName);
 

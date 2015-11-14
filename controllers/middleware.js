@@ -12,7 +12,10 @@ module.exports = {
     });
 
     next();
-  }
+  },
     
-    
+    verifyUser: function(req,res,next) {
+        console.log(req.params.username);
+        next();
+    }
 }

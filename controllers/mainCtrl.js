@@ -18,8 +18,17 @@ module.exports = {
     },
     
     getOccupations: function(req,res,next) {
-        
-        res.status(200).json(User.occupations);
+        console.log("this is req.query: " + req.query.order);
+        if (req.query.order === 'asc') {
+            console.log("im here!");
+            res.status(200).json(User.occupations.sort());
+        }
+        else if( req.query.order === 'desc') {
+            res.status(200).json(User.occupations.sort().reverse());
+        }
+        else {
+            res.status(200).json(User.occupations);
+        }
     },
     
     getLatestOccupation: function(req,res,next) {
@@ -45,6 +54,20 @@ module.exports = {
         }
         res.status(200).json(typeArray);
     },
+
+    getSecrets: function(req,res,next) {
+        console.log(req.params.username);
+        res.status(200).json(User.secrets);
+        
+    },
+    
+    
+    /*
+    app.get('/secrets/:username/:pin', mainCtrl.getSecrets);
+
+    */
+    
+    
     
     changeName: function(req,res,next) {
         
@@ -74,7 +97,21 @@ module.exports = {
     },
     
     getSkillz: function(req,res,next) {
-        res.status(200).json(User.skillz);
+        var expSkillz = [];
+        if (req.query.experience !== undefined) {   
+            for (var i = 0; i < User.skillz.length; i++) {
+               if (User.skillz[i].experience === req.query.experience) {
+                   expSkillz.push(User.skillz[i]);
+               }
+           
+             }
+            res.status(200).json(expSkillz);
+        }
+            
+        else {
+            
+             res.status(200).json(User.skillz);
+        }
     },
     
     addSkillz: function(req,res,next) {

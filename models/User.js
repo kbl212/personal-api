@@ -3,7 +3,7 @@ module.exports =
     {
         name: "Kyle Lauritzen",
         location: "Provo, UT",
-        occupations: ["Cashier", "Custodian", "Web Dev!"],
+        occupations: ["Custodian", "Web Dev!", "Cashier"],
         hobbies: [{
             "name": "Gym",
             "type": "current"
@@ -31,7 +31,8 @@ module.exports =
             
             
             
-            ]
+            ],
+        "secrets": "lolSecretssssss"
 
 
 
